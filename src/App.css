@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.main-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.main {
+  margin: 50px auto;
+  flex-grow: 1;
+}
+
+.letterInput {
+  height: 50px;
+  width: 50px;
+  border: 1px solid;
+  margin: 5px;
+  text-align: center;
+  padding: 3px;
+  border-radius: 0em;
+  color: #535c68;
+  background-color: #fefefe;
+  box-shadow: 3px 3px #535c68;
+  border-color: #000000;
+  font-weight: bold;
+  font-size: 1.25em;
+
+  text-transform: uppercase;
+}
+
+.letterInput:disabled {
+  pointer-events: none;
+}
+
+.inputIndexMatch {
+  background-color: #badc58 !important;
+  color: #000000;
+  border-color: #000000;
+  box-shadow: 3px 3px #6ab04c;
+}
+
+.inputIndexInWord {
+  background-color: #f6e58d!important;
+  color: #000000;
+  border-color: #000000;
+  box-shadow: 3px 3px #f9ca24;
+}
+
+.inputIndexNone {
+  color: #95afc0;
+  background-color: #fff;
+  border-color: #535c68;
+  /* box-shadow: 3px 3px #95afc0; */
+  box-shadow: none;
+}
+
+.btnFooter button {
+  margin: 5px;
+}
+
+span.green {
+  font-weight: bold;
+  color: #6ab04c !important;
+}
+
+span.orange {
+  font-weight: bold;
+  color: #f9ca24 !important;
+}
+
+
+.ui.button {
+  text-transform: uppercase;
+  border-radius: 0px;
+}
+
+.ui.buttons .button, .ui.buttons .button {
+  border-radius: 0px !important;
+}
+
+.ui.list>.item .header {
+  margin: 0px auto 5px auto;
+}
+
+.ui.list>.item>.content {
+  font-size: 1.25rem;
+  margin: 10px auto 10px auto;
+}
+
+.ui.positive.button, .ui.positive.buttons .button, .ui.green.button, .ui.green.buttons .button {
+  background-color: #7ed6df;
+}
+
+.ui.positive.button:hover, .ui.positive.buttons .button:hover, .ui.green.button:hover, .ui.green.buttons .button:hover {
+  color: black;
+  background-color: #7ed6df;
+  box-shadow: 2px 2px #22a6b3 !important;
+}
+
+
+.ui.negative.button, .ui.negative.buttons .button, .ui.red.button, .ui.red.buttons .button {
+  background-color: #ff7979;
+}
+
+.ui.negative.button:hover, .ui.negative.buttons .button:hover, .ui.red.button:hover, .ui.red.buttons .button:hover {
+  color: black;
+  background-color: #ff7979;
+  box-shadow: 2px 2px #eb4d4b !important;
+}
+
+.ui.message, .ui.red.message {
+  border-radius: 0px;
+}
+
+.ui.red.message {
+  color: #000;
+  background: #ff7979;
+  border: 0px;
+  box-shadow: 5px 5px #eb4d4b;
+}
+
+.ui.red.message .header {
+  color: #000;
+}
+
+.ui.red.message .ui.secondary.button {
+  color: black;
+  background: #eb4d4b;
+}
+
+.ui.green.message {
+  color: #000;
+  background: #badc58;
+  border: 0px;
+  box-shadow: 5px 5px #6ab04c;
+}
+
+.ui.green.message .header {
+  color: #000;
+}
+
+.ui.green.message .ui.secondary.button {
+  color: black;
+  background: #6ab04c;
+}
