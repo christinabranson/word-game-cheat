@@ -1,13 +1,13 @@
 import Game from "./components/Game";
-import GameProvider from "./components/gameContext/context";
+import CheatProvider from "./components/cheatContext/context";
 import "./App.css";
 
 function App() {
   return (
     <div className="main-container">
-      <GameProvider>
+      <CheatProvider>
         <Game />
-      </GameProvider>
+      </CheatProvider>
     </div>
   );
 }

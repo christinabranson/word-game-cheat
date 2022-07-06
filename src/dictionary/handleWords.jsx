@@ -11,22 +11,12 @@ const readAllWordsIntoArray = (numLetters = 5) => {
     .then((json) => json.words);
 };
 
-export const getWord = async (numLetters = 5) => {
-  const randomWord = await readAllWordsIntoArray(numLetters).then(
-    (textArray) => {
-      const randomWord =
-        textArray[Math.floor(Math.random() * textArray.length)];
-      return randomWord;
-    }
-  );
-
-  return randomWord;
-};
-
-export const validateWord = async (wordToCheck, numLetters = 5) => {
-  const isValid = await readAllWordsIntoArray(numLetters).then((textArray) => {
-    return !!textArray.includes(wordToCheck);
+export const getMatchingWords = async (patternRegex, numLetters = 5) => {
+  const matchingWords = await readAllWordsIntoArray(numLetters).then((textArray) => {
+    return textArray.filter(testString => patternRegex.test(testString))
   });
 
-  return isValid;
+  console.log("matchingWords: ", matchingWords);
+
+  return matchingWords.map(word => word.split(""));
 };

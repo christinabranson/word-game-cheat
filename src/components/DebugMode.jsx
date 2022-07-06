@@ -1,8 +1,8 @@
 import React from "react";
-import { useGameState } from "./gameContext";
+import { useCheatState } from "./cheatContext";
 
 const DebugMode = () => {
-  const gameState = useGameState();
+  const gameState = useCheatState();
   if (process.env.NODE_ENV === "development") {
     return <code>{JSON.stringify(gameState, null, 2)}</code>;
   }

@@ -1,19 +1,19 @@
 import React from "react";
 import {
-  useGameState,
-  useGameDispatch,
+  useCheatState,
+  useCheatDispatch,
   startNewGame,
   changeLetterCount,
   VALID_NUM_LETTERS,
-} from "./gameContext";
+} from "./cheatContext";
 
 const Header = () => {
-  const gameState = useGameState();
-  const gameDispatch = useGameDispatch();
+  const gameState = useCheatState();
+  const cheatDispatch = useCheatDispatch();
 
   const handleChangeNumLetters = (numLetters) => {
     if (numLetters !== gameState.numLetters) {
-      changeLetterCount(gameDispatch, numLetters);
+      changeLetterCount(cheatDispatch, numLetters);
     }
   };
 
@@ -30,15 +30,12 @@ const Header = () => {
     ));
 
   const handleStartNewGameClick = () => {
-    startNewGame(gameDispatch, gameState.numLetters);
+    startNewGame(cheatDispatch, gameState.numLetters);
   };
   return (
     <div className="ui fixed inverted menu">
       <div className="ui container">
-        <div className="header item">Word Game Clone</div>
-        <a onClick={handleStartNewGameClick} className="item">
-          New Game
-        </a>
+        <div className="header item">Word Game Cheat</div>
       </div>
 
       <div>
