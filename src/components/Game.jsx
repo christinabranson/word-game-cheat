@@ -3,13 +3,16 @@ import {
   useCheatDispatch,
   useCheatState,
   startNewGame,
-  getGuesses,
+  getMatches,
   buildInitialInput,
+  CHEAT_ACTIONS
 } from "./cheatContext";
 import MatchingGuesses from "./MatchingGuesses";
 import DebugMode from "./DebugMode";
 import Header from "./Header";
 import Footer from "./Footer";
+import Message from "./Message";
+import SelectableLetters from "./SelectableLetters";
 
 const Game = () => {
   const gameState = useCheatState();
@@ -18,6 +21,7 @@ const Game = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const defaultGuess = buildInitialInput(gameState.numLetters);
   const defaultGuessAsWord = buildInitialInput(gameState.numLetters).join("");
+  const [shouldShowMessage, setShouldShowMessage] = useState(true);
 
   useEffect(() => {
     setGuess(gameState.inputText);
@@ -26,6 +30,13 @@ const Game = () => {
   const getValue = (index) => {
     return guess[index] || "";
   };
+
+  const handleReset = () => {
+    cheatDispatch({
+      type: CHEAT_ACTIONS.NEW_CHEAT_WITH_LETTER_CHANGE,
+      payload: { numLetters: gameState.numLetters },
+    });
+  }
 
   const handleGuessInput = (event, index) => {
     const getValue = () => {
@@ -83,9 +94,9 @@ const Game = () => {
       return;
     }
 
-    if (guessAsWord == defaultGuessAsWord) {
+    if (guessAsWord === defaultGuessAsWord && gameState.includedLetters.length === 0 && gameState.excludedLetters.length === 0) {
       setErrorMessage(
-        `"${guessAsWord}" is invalid. Please enter at least one letter.`
+        `"${guessAsWord}" is invalid. Please enter at least one guess letter or select some letters to include or exclude.`
       );
       return;
     }
@@ -97,7 +108,7 @@ const Game = () => {
       return;
     }
 
-    await getGuesses(cheatDispatch, guessAsWord, gameState.numLetters);
+    await getMatches(cheatDispatch, gameState, guessAsWord);
   };
 
   return (
@@ -105,87 +116,28 @@ const Game = () => {
       <Header />
       <div className="ui main container">
         <div className="ui stackable grid">
-          <div className="ui centered 8 wide column">
+          <div className="ui centered wide column">
+            {shouldShowMessage && (
+              <Message setShouldShowMessage={setShouldShowMessage} />
+            )}
+          </div>
+        </div>
+        <div className="ui stackable grid">
+          <div className="ui centered four wide column">
             <div className="ui center aligned container">
-              <div
-                className="ui green message"
-                role="alert"
-                style={{ margin: "0px auto", width: "75%" }}
-              >
-                <h2 class="ui header">Word Game Cheater </h2>
-                <h3 style={{ marginTop: "-2px", fontStyle: "italic" }}>
-                  Where you can cheat at Word Game Clone!
-                </h3>
-                <h4>How to use:</h4>
-                <div
-                  style={{
-                    margin: "0px auto",
-                    width: "75%",
-                    textAlign: "left",
-                  }}
-                >
-                  <ol>
-                    <li>
-                      <strong>Start a Word Game</strong> - I recommend{" "}
-                      <a
-                        href="https://christinabranson.github.io/word-game-clone/"
-                        target="_blank"
-                      >
-                        <strong>Word Game Clone</strong>
-                      </a>{" "}
-                      because you can play over and over, but I guess the{" "}
-                      <i>other</i> one is good, too.
-                    </li>
-                    <li>
-                      <strong>
-                        Play until you have some letters in the correct spots
-                      </strong>{" "}
-                      - Generally they show up as <strong>green</strong>.{" "}
-                    </li>
-                    <li>
-                      <strong>
-                        Note the number of letters in the game and the
-                        letters/positions that you know
-                      </strong>{" "}
-                      - Use the dropdown in the header to change the letters you
-                      can enter.
-                    </li>
-                    <li>
-                      <strong>
-                        On the cheat tool (HERE!) enter in what you know
-                      </strong>{" "}
-                      - Make sure that letters you know (<strong>green</strong>{" "}
-                      in most games) are in the correct positions.{" "}
-                    </li>
-                    <li>
-                      <strong>Use a period (.) for unknowns</strong> - This is
-                      super important!{" "}
-                    </li>
-                    <li>
-                      <strong>
-                        At least one real letter (not a period) must be provided
-                      </strong>{" "}
-                      - This is also important!{" "}
-                    </li>
-                    <li>
-                      <strong>Only use letters or periods</strong> - Or you will
-                      get yelled at!{" "}
-                    </li>
-                    <li>
-                      <strong>The more letters you have</strong> the better your
-                      results will be, so keep guessing if the list is too
-                      large!{" "}
-                    </li>
-                  </ol>
-                </div>
-              </div>
+              <SelectableLetters />
+            </div>
+          </div>
+          <div className="ui centered twelve wide column">
+            <div className="ui center aligned container">
               <div className="ui hidden divider"></div>
+              <p>Select letters once you know their position.</p>
               <div>{renderInputBoxes()}</div>
               <div className="ui hidden divider"></div>
               {errorMessage && (
                 <>
                   <div className="ui red message" role="alert">
-                    <h2 class="ui header">Error</h2>
+                    <h2 className="ui header">Error</h2>
                     <p>{errorMessage}</p>
                   </div>
                   <div className="ui hidden divider"></div>
@@ -195,9 +147,18 @@ const Game = () => {
                 <button
                   onClick={handleSubmitGuess}
                   type="submit"
-                  className="ui button green"
+                  className={`ui button green ${gameState.loading ? "loading" : ""}`}
                 >
                   Get Matches
+                </button>
+                <button
+                  className={`ui negative button + ${
+                    gameState.loading ? "disabled" : ""
+                  }`}
+                  onClick={handleReset}
+                  disabled={gameState.loading}
+                >
+                  Reset
                 </button>
               </div>
               <div className="ui hidden divider"></div>

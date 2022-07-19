@@ -53,6 +53,14 @@ body {
   box-shadow: 3px 3px #f9ca24;
 }
 
+.inputIndexExclude {
+  background-color: #ff7979!important;
+  color: #000000;
+  border-color: #000000;
+  box-shadow: 3px 3px #eb4d4b;
+}
+
+
 .inputIndexNone {
   color: #95afc0;
   background-color: #fff;

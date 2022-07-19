@@ -6,7 +6,7 @@ const Footer = () => (
       <div className="ui center aligned stackable inverted divided grid">
         <div className="seven wide column">
           <h3 className="ui inverted header">Word Game Cheat</h3>
-          <h4 lassName="ui inverted header">
+          <h4 className="ui inverted header">
             To help you cheat at word games!
           </h4>
           <p>
