@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/word-game-cheat/static/css/main.ac221d34.css",
-    "main.js": "/word-game-cheat/static/js/main.be491f93.js",
+    "main.css": "/word-game-cheat/static/css/main.910e1e01.css",
+    "main.js": "/word-game-cheat/static/js/main.9d4a0eda.js",
     "static/js/787.b7eb5c8c.chunk.js": "/word-game-cheat/static/js/787.b7eb5c8c.chunk.js",
     "index.html": "/word-game-cheat/index.html",
-    "main.ac221d34.css.map": "/word-game-cheat/static/css/main.ac221d34.css.map",
-    "main.be491f93.js.map": "/word-game-cheat/static/js/main.be491f93.js.map",
+    "main.910e1e01.css.map": "/word-game-cheat/static/css/main.910e1e01.css.map",
+    "main.9d4a0eda.js.map": "/word-game-cheat/static/js/main.9d4a0eda.js.map",
     "787.b7eb5c8c.chunk.js.map": "/word-game-cheat/static/js/787.b7eb5c8c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ac221d34.css",
-    "static/js/main.be491f93.js"
+    "static/css/main.910e1e01.css",
+    "static/js/main.9d4a0eda.js"
   ]
 }
